@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import userSlice from "./userReducer/userSlice";
 
 export const store = configureStore({
-  reducer: { numberReducer: (state) => 3 },
+  reducer: { userReducer: userSlice },
 });

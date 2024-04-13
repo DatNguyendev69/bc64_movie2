@@ -2,33 +2,27 @@ import axios from "axios";
 import { useFormik } from "formik";
 import React from "react";
 import * as yup from "yup";
+import { useSer } from "../../service/userSer";
+import { useDispatch } from "react-redux";
+import { loginThunk } from "../../redux/userReducer/userThunk";
+import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const formLogin = useFormik({
     initialValues: {
       taiKhoan: "",
       matKhau: "",
     },
-    onSubmit: (value) => {
-      //   console.log("😢 ~ value", value);
-      const promise = axios({
-        baseURL:
-          "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
-        method: "POST",
-        data: value,
-        headers: {
-          TokenCybersoft:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.fWIHiHRVx9B7UlCgFCwvvXAlcVc-I-RB603rEDsM_wI",
-        },
+    onSubmit: async (value) => {
+      dispatch(loginThunk(value)).then(() => {
+        message.success("Đăng nhập thành công");
+        navigate("/");
       });
-
-      promise
-        .then(function (res) {
-          console.log(res);
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
     },
     validationSchema: yup.object().shape({
       taiKhoan: yup
@@ -76,7 +70,7 @@ const LoginPage = () => {
           />
           <p className="text-red-500 h-3">{formLogin.errors.matKhau}</p>
         </div>
-        <button className="bg-blue-400 text-white p-2 rounded">
+        <button className="bg-blue-600 text-white p-2 rounded">
           Đăng nhập
         </button>
       </form>

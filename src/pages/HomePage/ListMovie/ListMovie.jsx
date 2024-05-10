@@ -20,10 +20,10 @@ const ListMovie = () => {
   const fetchListMovie = async () => {
     try {
       const data = await movieSer.getListMovies();
-      console.log("😢 ~ data", data);
+      // console.log("😢 ~ data", data);
 
       let movieList = data.data.content;
-      console.log("😢 ~ movieList", movieList);
+      // console.log("😢 ~ movieList", movieList);
 
       setDataMovieList(movieList);
     } catch (error) {
@@ -36,7 +36,9 @@ const ListMovie = () => {
     return dataMovieList?.map((movie) => {
       return (
         <div
-          // onClick={navigatePageDetail(movie.maPhim)}
+          onClick={() => {
+            navigatePageDetail(movie.maPhim);
+          }}
           key={movie.maPhim}
           className="border rounded"
         >
@@ -49,7 +51,7 @@ const ListMovie = () => {
           </div>
           <div className="p-3 space-y-2">
             <p className="font-medium">{movie.tenPhim}</p>
-            <p className="text-sm text-gray-300">
+            <p className="text-sm text-gray-500">
               {movie.moTa.substring(0, 50)}...
             </p>
           </div>

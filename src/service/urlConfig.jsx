@@ -14,4 +14,4 @@ export const http = axios.create({
   },
 });
 
-export const MA_NHOM = "GP09";
+export const MA_NHOM = "GP02";

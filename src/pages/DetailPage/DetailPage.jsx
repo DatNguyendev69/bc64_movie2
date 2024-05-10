@@ -15,7 +15,7 @@ const DetailPage = () => {
   const fetchDetailMovie = async () => {
     try {
       let data = await movieSer.getDetailMovie(idMovie);
-      console.log("😢 ~ data", data.data.content);
+      // console.log("😢 ~ data", data.data.content);
 
       // Nơi set lại data đã được call từ api
       setDataMovie(data.data.content);

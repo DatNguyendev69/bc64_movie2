@@ -10,10 +10,10 @@ const CarouselMovie = () => {
   const fetchBannerMovie = async () => {
     try {
       const dataBanner = await movieSer.getBannerMovie();
-      console.log("😢 ~ dataBanner", dataBanner);
+      // console.log("😢 ~ dataBanner", dataBanner);
 
       let newDataBanner = dataBanner.data.content;
-      console.log("😢 ~ newDataBanner", newDataBanner);
+      // console.log("😢 ~ newDataBanner", newDataBanner);
 
       setDataBan(newDataBanner);
     } catch (err) {

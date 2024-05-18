@@ -10,7 +10,11 @@ export const movieSer = {
     return http.get(uri);
   },
   getDetailMovie: (idMovie) => {
-    let uri = `https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${idMovie}`;
+    let uri = `/api/QuanLyPhim/LayThongTinPhim?MaPhim=${idMovie}`;
+    return http.get(uri);
+  },
+  getScheduleMovie: (idMovie) => {
+    let uri = `/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idMovie}`;
     return http.get(uri);
   },
 };

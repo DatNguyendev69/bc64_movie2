@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { movieSer } from "../../service/movieSer";
 import DetailPageSchedule from "./DetailPageSchedule";
 import { useDispatch } from "react-redux";
-import {
-  turnOffLoading,
-  turnOnLoading,
-} from "../../redux/loadingReducer/loadingSlice";
+// import {
+//   turnOffLoading,
+//   turnOnLoading,
+// } from "../../redux/loadingReducer/loadingSlice";
 
 const DetailPage = () => {
   // Lấy param idMovie trên url xuống
@@ -23,19 +23,25 @@ const DetailPage = () => {
   // B1:
   const fetchDetailMovie = async () => {
     // Bật turnOnLoading đã tạo từ redux loadingSlice
-    dispatch(turnOnLoading());
+    // dispatch(turnOnLoading());
+    // Xóa turnOnLoading vì đã bật axios intercepter ở file urlConfig
+
     try {
       let data = await movieSer.getDetailMovie(idMovie);
       // console.log("😢 ~ data", data.data.content);
 
       // Nơi set lại data đã được call từ api
       setDataMovie(data.data.content);
-      setTimeout(() => {
-        dispatch(turnOffLoading());
-      }, 3000);
+
+      // Xóa turnOffLoading vì đã bật axios intercepter ở file urlConfig
+      // setTimeout(() => {
+      //   dispatch(turnOffLoading());
+      // }, 3000);
     } catch (error) {
       console.log("error: ", error);
-      dispatch(turnOffLoading());
+
+      // Xóa turnOffLoading vì đã bật axios intercepter ở file urlConfig
+      // dispatch(turnOffLoading());
     }
   };
   // B2:

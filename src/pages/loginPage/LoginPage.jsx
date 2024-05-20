@@ -19,10 +19,11 @@ const LoginPage = () => {
       matKhau: "",
     },
     onSubmit: async (value) => {
-      dispatch(loginThunk(value)).then(() => {
-        message.success("Đăng nhập thành công");
+      const navigateCustom = () => {
         navigate("/");
-      });
+      };
+
+      dispatch(loginThunk({ value, navigateCustom }));
     },
     validationSchema: yup.object().shape({
       taiKhoan: yup
